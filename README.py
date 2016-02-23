@@ -1,6 +1,10 @@
 # example_code
 # This code was shared with me as an example of how to write in Python.
 
+# look up a python dot operator -- a dot is a connection between attributes, ex. dog.color = "black"
+# read about modules, classes, and objects -- modules are like dictionaries, classes are types of dictionaries and templates for objects, and objects are _____________; modules are scripts that contain python codes
+
+# this is the "shebang" line -- it defines the document to be python code
 #!/usr/bin/env python
 
 # import something called "glob" and something called "sys", presumably these are seismology things...no "glob" is a python code for matching filenames.  I don't know what this means.  "sys" is a python code for "system specific parameters," but I don't know what this means either.
