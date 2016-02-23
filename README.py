@@ -36,7 +36,13 @@ micper = per[(minper <= per) & (per <= maxper)]
 # Creating a new variable called "fDead"
 fDead = open('DeadChannelsAGAIN','w')
 
-# defining a new function called "checkifdead", but what is "curfile"?
+# defining a new function called "checkifdead", but what is "curfile"? current file
+# look up try and except in google -- has to do with errors
+# look up open
+# look up brackets []
+# look up line, strip, and split
+# look up minper and maxper - minimum period and maximum period
+# look up staper 
 def checkifdead(curfile):
     try:
         with open(curfile,'r') as f:
@@ -65,6 +71,9 @@ def checkifdead(curfile):
         result = curfile + ' is bad\n'
     return result
 
+# this is where the code actually starts
+# pool: from a multiprocessing package, we import something called pool -- look this up in google
+# glob.glob pulls everything that is from test archive with a certain name
 pool = Pool(10)
 for year in range(1989,2016):
     for days in range(1,367):
