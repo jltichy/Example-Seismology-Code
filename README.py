@@ -57,31 +57,31 @@ def checkifdead(curfile):
                 if (1./float(line[1]) >= minper) and (1./float(line[1]) <= maxper): #float is a python class that allows for NaN, Inf, and -Inf when doing arithmetic
                     staper.append(1./float(line[1])) #append adds an item to the end of a list (the list in this case is staper)
                     stapow.append(float(line[0]))
-        staper = np.asarray(staper)
-        stapow = np.asarray(stapow)
-        NLNMinterp = np.interp(1./staper,1./micper,micNLNM)
+        staper = np.asarray(staper) #converts the input to an array (staper is now an array)
+        stapow = np.asarray(stapow) #stapow is now an array
+        NLNMinterp = np.interp(1./staper,1./micper,micNLNM) #np.interp is one dimensional numerical interpolation
         #plt.figure()
         #p1=plt.semilogx(micper,micNLNM)
         #p2=plt.semilogx(staper,stapow,'k')
         #p3=plt.semilogx(staper,NLNMinterp,'r')
         #plt.show()
-        dbdiff = 1./float(len(NLNMinterp))*sum(stapow-NLNMinterp)
+        dbdiff = 1./float(len(NLNMinterp))*sum(stapow-NLNMinterp) #len is length - returns the length of an object
         if dbdiff <= 0.:
-            result = curfile + ' is dead with dB difference ' + str(dbdiff) + '\n'
+            result = curfile + ' is dead with dB difference ' + str(dbdiff) + '\n' #\n creates a new line
         else:
             result = ''
     except:
         print curfile + ' is bad'
         result = curfile + ' is bad\n'
-    return result
+    return result # return is the numerical result of a function
 
 # this is where the code actually starts
-# pool: from a multiprocessing package, we import something called pool -- look this up in google
+# pool: from a multiprocessing package, we import something called pool -- again, this is how we decide which processors to use
 # glob.glob pulls everything that is from test archive with a certain name
 pool = Pool(10)
-for year in range(1989,2016):
-    for days in range(1,367):
-        print 'On ' + str(year) + ' ' + str(days).zfill(3)
+for year in range(1989,2016): #pulls everything from 1989 to 2015
+    for days in range(1,367): #checks everything from 1 to 366
+        print 'On ' + str(year) + ' ' + str(days).zfill(3) #.zfill pads a string with zeros
         files = glob.glob('/TEST_ARCHIVE/PSDS/*/' + str(year) + '/PSD*' + str(days).zfill(3)) 
         p = pool.map(checkifdead,files)
         for res in p:
